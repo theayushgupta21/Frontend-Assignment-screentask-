@@ -15,7 +15,17 @@ function createProductImage(title: string, category: string) {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
 
-    return `https://picsum.photos/seed/${slug}/600/600`;
+    // Map the slug deterministically to one of DummyJSON's product image ids
+    // so local mock products show images that match the DummyJSON theme.
+    // Produce a small positive integer (1-30) from the slug.
+    let h = 0;
+    for (let i = 0; i < slug.length; i++) {
+        h = (h << 5) - h + slug.charCodeAt(i);
+        h |= 0;
+    }
+    const idx = Math.abs(h) % 30 + 1;
+
+    return `https://cdn.dummyjson.com/product-images/${idx}.jpg`;
 }
 
 // In a real app this would come from a database / CMS / API.

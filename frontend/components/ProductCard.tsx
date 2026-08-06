@@ -2,12 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import type { Product } from "@/lib/products";
 import { useCartStore } from "@/store/useCartStore";
 import StarRating from "./Starrating";
 
 export default function ProductCard({ product }: { product: Product }) {
     const addItem = useCartStore((state) => state.addItem);
+    const [imageSrc, setImageSrc] = useState(product.image);
+
+    function makePicsumFallback(title: string, category: string) {
+        const slug = `${category}-${title}`
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+        return `https://picsum.photos/seed/${slug}/600/600`;
+    }
 
     return (
         <Link
@@ -16,9 +26,13 @@ export default function ProductCard({ product }: { product: Product }) {
         >
             <div className="relative aspect-square w-full overflow-hidden border-b border-[#CFE6FF] bg-[#F6FBFF]">
                 <Image
-                    src={product.image}
+                    src={imageSrc}
                     alt={product.title}
                     fill
+                    onError={() => {
+                        const fallback = makePicsumFallback(product.title, product.category);
+                        if (imageSrc !== fallback) setImageSrc(fallback);
+                    }}
                     className="object-cover transition duration-300 group-hover:scale-[1.03]"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
