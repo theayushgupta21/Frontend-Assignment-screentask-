@@ -1,30 +1,50 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
-import { products, priceBounds } from "@/lib/products";
+import { useMemo, useEffect, useState } from "react";
+import type { Product } from "@/lib/products";
+import { products as staticProducts } from "@/lib/products";
 import ProductCard from "./ProductCard";
 
 export default function ProductGrid() {
     const searchParams = useSearchParams();
 
+    const [products, setProducts] = useState<Product[] | null>(null);
+
+    useEffect(() => {
+        // Fetch filtered products from the new API route. If it fails, fall
+        // back to the static catalog so the UI remains usable.
+        const qs = typeof window !== "undefined" ? window.location.search : "";
+
+        fetch(`/api/electronics${qs}`)
+            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+            .then((data) => setProducts(data.products ?? []))
+            .catch(() => setProducts(staticProducts));
+    }, [searchParams?.toString()]);
+
     const selectedCategories = searchParams.get("category")?.split(",").filter(Boolean) ?? [];
     const selectedBrands = searchParams.get("brand")?.split(",").filter(Boolean) ?? [];
     const query = searchParams.get("q")?.trim().toLowerCase() ?? "";
 
-    const [priceMin, priceMax] = (searchParams.get("price") ?? `${priceBounds.min}-${priceBounds.max}`)
-        .split("-")
-        .map(Number);
-
+    // If the API returned products we assume server-side filtering applied
+    // and just display them. While loading (products === null) fall back to
+    // client filtering of the static catalog so the UI is responsive.
     const filtered = useMemo(() => {
-        return products.filter((product) => {
+        const source = products === null ? staticProducts : products;
+
+        return source.filter((product) => {
             const matchesCategory =
                 selectedCategories.length === 0 || selectedCategories.includes(product.category);
 
             const matchesBrand =
                 selectedBrands.length === 0 || selectedBrands.includes(product.brand);
 
-            const matchesPrice = product.price >= priceMin && product.price <= priceMax;
+            // price filter only applied client-side when present in the URL
+            const priceParam = searchParams.get("price");
+            if (priceParam) {
+                const [min, max] = priceParam.split("-").map(Number);
+                if (product.price < min || product.price > max) return false;
+            }
 
             const matchesQuery =
                 query.length === 0 ||
@@ -32,9 +52,9 @@ export default function ProductGrid() {
                 product.category.toLowerCase().includes(query) ||
                 product.brand.toLowerCase().includes(query);
 
-            return matchesCategory && matchesBrand && matchesPrice && matchesQuery;
+            return matchesCategory && matchesBrand && matchesQuery;
         });
-    }, [selectedCategories, selectedBrands, priceMin, priceMax, query]);
+    }, [products, selectedCategories, selectedBrands, query, searchParams]);
 
     if (filtered.length === 0) {
         return (
