@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shop — Catalog",
+  title: "Shop-Catalog",
   description: "Everyday gear, catalogued.",
 };
 
