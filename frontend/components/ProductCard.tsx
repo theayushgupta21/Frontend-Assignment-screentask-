@@ -12,9 +12,9 @@ export default function ProductCard({ product }: { product: Product }) {
     return (
         <Link
             href={`/product/${product.id}`}
-            className="group flex flex-col overflow-hidden rounded-sm border border-[#D9D8D2] bg-white transition hover:border-[#16171B]"
+            className="group flex flex-col overflow-hidden rounded-sm border border-[#CFE6FF] bg-white transition hover:border-[color:var(--accent)]"
         >
-            <div className="relative aspect-square w-full overflow-hidden border-b border-[#D9D8D2] bg-[#F1F0EC]">
+            <div className="relative aspect-square w-full overflow-hidden border-b border-[#CFE6FF] bg-[#F6FBFF]">
                 <Image
                     src={product.image}
                     alt={product.title}
@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: Product }) {
             </div>
 
             <div className="flex flex-1 flex-col gap-1.5 p-4">
-                <span className="font-catalog text-[10px] font-bold uppercase tracking-widest text-[#55575E]">
+                <span className="font-catalog text-[10px] font-bold uppercase tracking-widest text-[#5B6B80]">
                     # {product.category}
                 </span>
                 <h3 className="font-display line-clamp-2 text-sm font-semibold leading-snug text-[#16171B]">
@@ -34,7 +34,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 <StarRating rating={product.rating} />
 
                 <div className="mt-auto flex items-center justify-between pt-3">
-                    <span className="font-catalog text-lg font-bold text-[#16171B]">
+                    <span className="font-catalog text-lg font-bold text-[#062039]">
                         ₹{product.price.toLocaleString()}
                     </span>
                     <button
@@ -43,7 +43,7 @@ export default function ProductCard({ product }: { product: Product }) {
                             e.stopPropagation();
                             addItem(product, 1);
                         }}
-                        className="font-catalog rounded-sm bg-[#16171B] px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:bg-[#FF4B26]"
+                        className="font-catalog rounded-sm bg-[color:var(--accent)] px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:bg-[color:var(--accent-strong)]"
                     >
                         Add
                     </button>

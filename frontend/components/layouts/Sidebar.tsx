@@ -61,13 +61,13 @@ export default function Sidebar() {
         searchParams.has("price");
 
     return (
-        <aside className="w-72 shrink-0 rounded-sm border border-[#D9D8D2] bg-white p-5">
-            <div className="mb-5 flex items-center justify-between border-b border-[#D9D8D2] pb-4">
-                <h2 className="font-display text-lg font-bold text-[#16171B]">Filters</h2>
+        <aside className="w-72 shrink-0 rounded-sm border border-[#CFE6FF] bg-white p-5">
+            <div className="mb-5 flex items-center justify-between border-b border-[#CFE6FF] pb-4">
+                <h2 className="font-display text-lg font-bold text-[#062039]">Filters</h2>
                 {hasActiveFilters && (
                     <button
                         onClick={clearAll}
-                        className="font-catalog text-[11px] font-bold uppercase tracking-wide text-[#FF4B26] hover:underline"
+                        className="font-catalog text-[11px] font-bold uppercase tracking-wide text-[color:var(--accent)] hover:underline"
                     >
                         Clear
                     </button>
@@ -89,7 +89,7 @@ export default function Sidebar() {
                             <span className="flex items-center gap-2">
                                 <input
                                     type="checkbox"
-                                    className="accent-[#FF4B26]"
+                                    className="accent-[color:var(--accent)]"
                                     checked={selectedCategories.includes(item)}
                                     onChange={() => toggleValue("category", item)}
                                 />
@@ -109,7 +109,7 @@ export default function Sidebar() {
                     <h3 className="font-catalog text-[11px] font-bold uppercase tracking-widest text-[#55575E]">
                         Price
                     </h3>
-                    <span className="font-catalog rounded-sm bg-[#16171B] px-2 py-1 text-xs font-bold text-white">
+                    <span className="font-catalog rounded-sm bg-[color:var(--accent)] px-2 py-1 text-xs font-bold text-white">
                         ₹{priceMin.toLocaleString()}–₹{priceMax.toLocaleString()}
                     </span>
                 </div>
@@ -126,7 +126,7 @@ export default function Sidebar() {
                                 const next = Math.min(Number(e.target.value), priceMax);
                                 setPriceRange(next, priceMax);
                             }}
-                            className="w-full accent-[#FF4B26]"
+                            className="w-full accent-[color:var(--accent)]"
                         />
                     </div>
                     <div>
@@ -140,7 +140,7 @@ export default function Sidebar() {
                                 const next = Math.max(Number(e.target.value), priceMin);
                                 setPriceRange(priceMin, next);
                             }}
-                            className="w-full accent-[#FF4B26]"
+                            className="w-full accent-[color:var(--accent)]"
                         />
                     </div>
                 </div>
@@ -161,7 +161,7 @@ export default function Sidebar() {
                             <span className="flex items-center gap-2">
                                 <input
                                     type="checkbox"
-                                    className="accent-[#FF4B26]"
+                                    className="accent-[color:var(--accent)]"
                                     checked={selectedBrands.includes(brand)}
                                     onChange={() => toggleValue("brand", brand)}
                                 />

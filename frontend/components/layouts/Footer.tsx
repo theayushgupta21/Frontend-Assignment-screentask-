@@ -34,13 +34,13 @@ const socials = [
 
 export default function Footer() {
     return (
-        <footer className="border-t border-[#D9D8D2] bg-[#F1F0EC]">
+        <footer className="bg-[linear-gradient(90deg,#07294f_0%,#0b3b7a_100%)] text-white">
             <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-8 sm:flex-row sm:justify-between sm:px-6">
-                <Link href="/" className="font-display text-lg font-bold tracking-tight text-[#16171B]">
-                    Shop<span className="text-[#FF4B26]">.</span>
+                <Link href="/" className="font-display text-lg font-bold tracking-tight text-white">
+                    Shop<span className="text-[color:var(--accent)]">.</span>
                 </Link>
 
-                <p className="font-catalog order-3 text-xs text-[#55575E] sm:order-2">
+                <p className="font-catalog order-3 text-xs text-white/80 sm:order-2">
                     © {new Date().getFullYear()} Shop. All rights reserved.
                 </p>
 
@@ -52,7 +52,7 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={social.name}
-                            className="flex h-9 w-9 items-center justify-center rounded-sm border border-[#D9D8D2] text-[#16171B] transition hover:border-[#16171B] hover:text-[#FF4B26]"
+                            className="flex h-9 w-9 items-center justify-center rounded-sm border border-white/10 text-white/90 transition hover:border-white hover:text-[color:var(--accent)]"
                         >
                             {social.icon}
                         </a>

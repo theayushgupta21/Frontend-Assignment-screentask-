@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} bg-[#F1F0EC] font-[var(--font-body)] text-[#16171B]`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} bg-[#F1F0EC] font-(--font-body) text-[#16171B]`}
       >
         <div className="flex-1">{children}</div>
         <Footer />
