@@ -1,69 +1,52 @@
-# 🚀 Live Deployment
+#  E-Commerce UI with Product Details and Cart
 
-The application is deployed on **Vercel** and is publicly accessible.
+This project is a modern Next.js e-commerce frontend with a product catalog, search and filter experience, product detail pages, and a persistent cart.
 
-## 🌐 Live Demo
+## ✨ Features
 
-**Production URL:**
-`https://your-project-name.vercel.app`
+- Product listing page with responsive cards
+- Search and category/brand filtering
+- Product detail page for each item
+- Add-to-cart interactions with quantity updates
+- Cart page with subtotal, shipping, and total summary
+- Persistent cart state using Zustand + localStorage
+- Image URLs generated from each product’s name/category for a more consistent catalog experience
 
-> Replace the URL above with your actual Vercel deployment link.
+## 🧰 Tech Stack
 
----
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Zustand
 
-## 📦 Deployment Platform
+## ▶️ Run Locally
 
-* **Platform:** Vercel
-* **Framework:** Next.js 16 (App Router)
-* **Build Command:** `npm run build`
-* **Development Command:** `npm run dev`
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open http://localhost:3000
 
----
+4. Vercel deployment link: [https://e-commerce-frontend-psi.vercel.app/](https://e-commerce-frontend-psi.vercel.app/)
 
-## ⚡ Deploy Your Own Copy
+## 🏗️ Build
 
-1. Fork or clone this repository.
-2. Push it to your GitHub account.
-3. Sign in to Vercel with GitHub.
-4. Import the repository.
-5. Configure environment variables (if required).
-6. Click **Deploy**.
+```bash
+npm run build
+```
 
-Vercel will automatically detect the Next.js project and build it.
+## 🧭 Main Routes
 
----
+- `/` — home/catalog page
+- `/product/[id]` — product detail page
+- `/cart` — shopping cart page
 
-## 🔄 Automatic Deployments
+## 📝 Notes
 
-This project is connected to GitHub. Every push to the default branch automatically triggers a new production deployment on Vercel.
-
----
-
-## ✅ Deployment Checklist
-
-* ✔️ Project builds successfully
-* ✔️ Responsive on desktop, tablet, and mobile
-* ✔️ Product catalog loads correctly
-* ✔️ Search functionality works
-* ✔️ Sidebar filters update products
-* ✔️ Product detail page loads
-* ✔️ Shopping cart persists using Local Storage
-* ✔️ Dynamic routes work correctly
-* ✔️ Optimized for production with Next.js
-
----
-
-## 📸 Screenshots
-
-Add screenshots after deployment for a better project showcase.
-
-* Home Page
-* Product Details Page
-* Shopping Cart
-* Responsive Mobile View
-
----
-
-## 💡 Notes
-
-If the deployment URL changes, update the **Production URL** above so users can always access the latest version of the application.
+- Product images are generated from the product title and category to keep visuals aligned with the catalog data.
+- The cart and product detail routes are wired through the app router so navigation works correctly from the navbar and product cards.
