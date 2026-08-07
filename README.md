@@ -32,7 +32,7 @@ This project is a modern Next.js e-commerce frontend with a product catalog, sea
    ```
 3. Open http://localhost:3000
 
-4. Vercel deployment link: [https://e-commerce-frontend-psi.vercel.app/](https://e-commerce-frontend-psi.vercel.app/)
+4. Vercel deployment link: [https://frontend-assignment-screentask.vercel.app/](https://frontend-assignment-screentask.vercel.app/)
 
 ## 🏗️ Build
 
